@@ -39,11 +39,11 @@ If your module depends on other modules, you can mount them as well using the `-
 
 ### --libraries
 
-If depending on a specific library, or using the Libraries API module, point this option to the location of your downloaded libraries. For example: `--libraries /path/to/downloaded/libraries/`.
+If depending on a specific library, or using the Libraries API module, point this option to the location of your downloaded libraries. This will be mounted inside Drupal as `sites/all/libraries`. For example: `--libraries /path/to/downloaded/libraries/`.
 
 ### --vendor
 
-If using Composer Manager, you can point this option to the location of your vendor directory. For example: `--vendor /path/to/vendor/`.
+If using Composer Manager, you can point this option to the location of your vendor directory. This will be mounted inside Drupal as `sites/all/vendor`. For example: `--vendor /path/to/vendor/`.
 
 ### -c, --core
 
