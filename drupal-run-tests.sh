@@ -125,14 +125,14 @@ if [[ ! -z $GROUP ]]; then
 fi
 
 # Prepare Docker options and commands.
-CONTAINER_NAME='local_wadmiraal_drupal_test_runner'
+CONTAINER_NAME="local_wadmiraal_drupal_test_runner_$RANDOM"
 DOCKER='sudo docker'
 TAG=$CORE
 MOUNT_OPTIONS="-v $WORK_DIR:/var/www/sites/all/modules/__to_test__ $MOUNT_OPTIONS"
 
 EXIT_CODE=0
 echo "Starting new test runner with Drupal $CORE..."
-$DOCKER run -d -p 8081:80 --name $CONTAINER_NAME $MOUNT_OPTIONS wadmiraal/drupal:$TAG >> /dev/null
+$DOCKER run -d --name $CONTAINER_NAME $MOUNT_OPTIONS wadmiraal/drupal:$TAG >> /dev/null
 
 RUNNING=$($DOCKER ps | grep $CONTAINER_NAME)
 if [[ -z $RUNNING ]]; then
