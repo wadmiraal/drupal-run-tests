@@ -1,0 +1,5 @@
+language: c
+sudo: required
+services:
+  - docker
+script: ./drupal-run-tests.sh -v -c 7 --class ModuleD7WebTestCase --module `pwd`/tests/module_d7 --dependencies `pwd`/tests/dep_d7 --libraries `pwd`/tests/mount_dir --vendor `pwd`/tests/mount_dir

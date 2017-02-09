@@ -1,0 +1,1 @@
+Test if --vendor and --libraries correctly mount.

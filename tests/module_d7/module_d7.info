@@ -1,0 +1,5 @@
+name = D7 Test Runner
+description = Test module for Drupal 7 runner
+core = 7.x
+dependencies[] = dep_d7
+files[] = module_d7.test

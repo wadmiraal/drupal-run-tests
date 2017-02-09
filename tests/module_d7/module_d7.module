@@ -1,0 +1,5 @@
+<?php
+
+function module_d7_return_true() {
+  return true;
+}
