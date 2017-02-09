@@ -127,12 +127,16 @@ fi
 # Prepare Docker options and commands.
 CONTAINER_NAME="local_wadmiraal_drupal_test_runner_$RANDOM"
 DOCKER='sudo docker'
-TAG=$CORE
 MOUNT_OPTIONS="-v $WORK_DIR:/var/www/sites/all/modules/__to_test__ $MOUNT_OPTIONS"
+if [[ $CORE == 7* ]]; then
+  TEST_SCRIPT='php /var/www/scripts/run-tests.sh'
+else
+  TEST_SCRIPT='php /var/www/core/scripts/run-tests.sh'
+fi
 
 EXIT_CODE=0
 echo "Starting new test runner with Drupal $CORE..."
-$DOCKER run -d --name $CONTAINER_NAME $MOUNT_OPTIONS wadmiraal/drupal:$TAG >> /dev/null
+$DOCKER run -d --name $CONTAINER_NAME $MOUNT_OPTIONS wadmiraal/drupal:$CORE >> /dev/null
 
 RUNNING=$($DOCKER ps | grep $CONTAINER_NAME)
 if [[ -z $RUNNING ]]; then
@@ -149,7 +153,7 @@ else
   echo "Cleared the class registry."
 
   echo "Run tests..."
-  $DOCKER exec $CONTAINER_NAME bash -c "php /var/www/scripts/run-tests.sh $COMMAND_ARGS"
+  $DOCKER exec $CONTAINER_NAME bash -c "$TEST_SCRIPT $COMMAND_ARGS"
 
   # Assign the exit code based on the test run.
   EXIT_CODE=$?

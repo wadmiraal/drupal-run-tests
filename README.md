@@ -58,7 +58,7 @@ Specify which version of Drupal core to use. Check [available tags](https://hub.
 
 ### `--class`
 
-Which test class to run. Can only give a single class (this is a limitation of Drupal's test script).
+Which test class to run. Can only give a single class (this is a limitation of Drupal's test script). If using Drupal 8, don't forget this requires the complete namespace, and that you must double-escape backslashes. For example: `--class 'Drupal\\Tests\\node\\Kernel\\Views\\RevisionCreateTimestampTest'`
 
 ### `--group`
 
