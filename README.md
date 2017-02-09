@@ -30,7 +30,7 @@ Installation
 ------------
 
     wget https://raw.githubusercontent.com/wadmiraal/drupal-run-tests/master/drupal-run-tests.sh
-    chmod +x drupal-run-tests.ch
+    chmod +x drupal-run-tests.sh
     sudo mv drupal-run-tests.sh /usr/local/bin/
 
 Options
