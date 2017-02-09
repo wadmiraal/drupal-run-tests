@@ -29,6 +29,50 @@ Installation
 Usage
 -----
 
+### --module
+
 By default, `drupal-run-tests.sh` will mount the current directory you are in. So if you are in the root of your module, you don't have to use the `--module` option. Otherwise, point the runner to your module code by providing the full path, like `--module /full/path/to/my/module/`.
 
-If your module depends on other modules, you can mount them as well using the `--dependencies` option. You can only specify a single dependency directory, so if you depend on multiple modules, put them all inside a single directory, and mount that one. For example: `--dependencies /path/to/modules`.
+### --dependencies
+
+If your module depends on other modules, you can mount them as well using the `--dependencies` option. You can only specify a single dependency directory, so if you depend on multiple modules, put them all inside a single directory, and mount that one. For example: `--dependencies /path/to/modules/`.
+
+### --libraries
+
+If depending on a specific library, or using the Libraries API module, point this option to the location of your downloaded libraries. For example: `--libraries /path/to/downloaded/libraries/`.
+
+### --vendor
+
+If using Composer Manager, you can point this option to the location of your vendor directory. For example: `--vendor /path/to/vendor/`.
+
+### -c, --core
+
+Specify which version of Drupal core to use. Check [available tags](https://hub.docker.com/r/wadmiraal/drupal/tags/) for wadmiraal/drupal for more information.
+
+### --class
+
+Which test class to run. Can only give a single class (this is a limitation of Drupal's test script).
+
+### --group
+
+Run all tests inside a group. For example, `--group Node` will run all tests for the node module.
+
+### -a, --all
+
+Runs all available tests, Drupal core and module dependencies included.
+
+### -n, --concurrency
+
+How many runners to use. Defaults to 1.
+
+### -v, --verbose
+
+Runs in verbose mode, which makes the Drupal test script output individual assertion results, as well as stack traces in case of failures.
+
+### -l, --list
+
+Will pass `--list` to the Drupal test script, which lists all available tests.
+
+### -h, --help
+
+Print help.
