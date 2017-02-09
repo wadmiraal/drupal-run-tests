@@ -1,0 +1,6 @@
+name: D8 Test Runner
+description: Test module for Drupal 8 runner
+type: module
+core: 8.x
+dependencies:
+  - dep_d8

@@ -1,0 +1,4 @@
+name: D8 Runner Dependency
+description: Dependency module for D8 Test Runner
+type: module
+core: 8.x

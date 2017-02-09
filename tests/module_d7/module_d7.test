@@ -21,12 +21,9 @@ class ModuleD7WebTestCase extends DrupalWebTestCase {
     parent::setUp('module_d7');
   }
 
-  public function testTheRunner() {
+  public function testIt() {
     $this->assertTrue(module_d7_return_true(), "Module was correctly found and loaded.");
     $this->assertTrue(dep_d7_return_true(), "Dependency was correctly found and loaded.");
-  }
-
-  public function testMountedFiles() {
     $this->assertTrue(file_exists('sites/all/libraries/mounted_file.txt'), "Libraries were correctly mounted.");
     $this->assertTrue(file_exists('sites/all/vendor/mounted_file.txt'), "Composer vendor directory was correctly mounted.");
   }

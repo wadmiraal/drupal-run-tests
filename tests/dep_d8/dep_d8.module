@@ -1,0 +1,5 @@
+<?php
+
+function dep_d8_return_true() {
+  return true;
+}

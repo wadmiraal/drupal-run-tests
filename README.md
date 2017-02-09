@@ -46,11 +46,17 @@ If your module depends on other modules, you can mount them as well using the `-
 
 ### `--libraries`
 
-If depending on a specific library, or using the Libraries API module, point this option to the location of your downloaded libraries. This will be mounted inside Drupal as `sites/all/libraries`. For example: `--libraries /path/to/downloaded/libraries/`.
+If depending on a specific library, or using the Libraries API module, point this option to the location of your downloaded libraries. This will be mounted inside Drupal 7 as `sites/all/libraries`, and Drupal 8 as `libraries`. For example: `--libraries /path/to/downloaded/libraries/`.
 
 ### `--vendor`
 
-If using Composer Manager, you can point this option to the location of your vendor directory. This will be mounted inside Drupal as `sites/all/vendor`. For example: `--vendor /path/to/vendor/`.
+*Only for Drupal 7*. If using Composer Manager, you can point this option to the location of your vendor directory. This will be mounted inside Drupal as `sites/all/vendor`. For example: `--vendor /path/to/vendor/`.
+
+### `--composer-install`
+
+*Only for Drupal 8*. This will install the Composer `drupal-rebuild` extension, and call `composer drupal-rebuild && composer install` prior to running tests.
+
+*Note: this is not the recommended way of installing Composer dependencies in Drupal 8, but is still the easiest way in our particular context.*
 
 ### `-c`, `--core`
 
