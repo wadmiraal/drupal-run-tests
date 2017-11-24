@@ -8,14 +8,15 @@
 
 print_help() {
   echo -e "Usage:"
-  echo -e "  $0 [-h] [-l] [-v] [-c <version>] [-n <runners>] [--module <workdir>] [--dependencies <depdir>] [--vendor <vendordir>] [--libraries <libdir>] --class <testclass>"
-  echo -e "  $0 [-h] [-l] [-v] [-c <version>] [-n <runners>] [--module <workdir>] [--dependencies <depdir>] [--vendor <vendordir>] [--libraries <libdir>] --group <groupname>"
-  echo -e "  $0 [-h] [-l] [-v] [-c <version>] [-n <runners>] [--module <workdir>] [--dependencies <depdir>] [--vendor <vendordir>] [--libraries <libdir>] [--composer-install] --all"
+  echo -e "  $0 [-h] [-l] [-v] [-s] [-c <version>] [-n <runners>] [--module <workdir>] [--dependencies <depdir>] [--vendor <vendordir>] [--libraries <libdir>] --class <testclass>"
+  echo -e "  $0 [-h] [-l] [-v] [-s] [-c <version>] [-n <runners>] [--module <workdir>] [--dependencies <depdir>] [--vendor <vendordir>] [--libraries <libdir>] --group <groupname>"
+  echo -e "  $0 [-h] [-l] [-v] [-s] [-c <version>] [-n <runners>] [--module <workdir>] [--dependencies <depdir>] [--vendor <vendordir>] [--libraries <libdir>] [--composer-install] --all"
   echo -e ""
   echo -e "Options:"
   echo -e " -h, --help\t\tDisplay this help."
   echo -e " -l, --list\t\tList available tests (passes --list to scripts/run-tests.sh)."
   echo -e " -v, --verbose\t\tVerbose output (passes --verbose to scripts/run-tests.sh)."
+  echo -e " -s, --sudo\t\tUse sudo to communicate with the docker daemon."
   echo -e " -c, --core\t\tThe version of Drupal core to use (e.g.: 7, 7.52, 8, 8.2.0)."
   echo -e " -n, --concurrency\tNumber of test runners to launch in parallel (passes --concurrency to scripts/run-tests.sh)."
   echo -e " --module\t\tThe working directory where the module code is located. Defaults to the current directory."
@@ -34,10 +35,11 @@ print_help() {
 # Prepare our arguments and options.
 COMMAND_ARGS=''
 CORE=7
+DOCKER='docker'
 MOUNT_OPTIONS=''
 WORK_DIR=`pwd`
 CAN_RUN=1
-PARSED_OPTIONS=$(getopt -n "$0" -o hlvc:n:a --long "help,list,verbose,core,concurrency:,all,module:,dependencies:,vendor:,libraries:,class:,group:,composer-install"  -- "$@")
+PARSED_OPTIONS=$(getopt -n "$0" -o hlvsc:n:a --long "help,list,verbose,sudo,core:,concurrency:,all,module:,dependencies:,vendor:,libraries:,class:,group:,composer-install"  -- "$@")
 
 # Bad arguments, something has gone wrong with the getopt command.
 if [ $? -ne 0 ];
@@ -66,6 +68,10 @@ while true; do
     -c|--core)
       CORE=$2
       shift 2
+      ;;
+    -s|--sudo)
+      DOCKER="sudo $DOCKER"
+      shift
       ;;
     -a|--all)
       CAN_RUN=0
@@ -142,7 +148,6 @@ fi
 
 # Prepare Docker options and commands.
 CONTAINER_NAME="local_wadmiraal_drupal_test_runner_$RANDOM"
-DOCKER='sudo docker'
 if [[ $CORE == 7* ]]; then
   MOUNT_OPTIONS="-v $WORK_DIR:/var/www/sites/all/modules/__to_test__ $MOUNT_OPTIONS"
   TEST_SCRIPT='php /var/www/scripts/run-tests.sh'
