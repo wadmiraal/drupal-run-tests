@@ -174,7 +174,7 @@ else
   # See https://www.drupal.org/node/2405811 for more information.
   if [[ ! -z $RUN_COMPOSER_INSTALL && $CORE == 8* ]]; then
     echo -e "\e[32mUpdating Composer dependencies...\e[0m"
-    $DOCKER exec $CONTAINER_NAME bash -c 'drush --root=/var/www/ dl composer_manager'
+    $DOCKER exec $CONTAINER_NAME bash -c 'drush --root=/var/www/ dl composer_manager-8.x-1.0-rc2'
     $DOCKER exec $CONTAINER_NAME bash -c 'cd /var/www && php modules/composer_manager/scripts/init.php'
     $DOCKER exec $CONTAINER_NAME bash -c 'cd /var/www && composer drupal-rebuild && composer update --prefer-source'
   fi
