@@ -22,7 +22,7 @@ print_help() {
   echo -e " --module\t\tThe working directory where the module code is located. Defaults to the current directory."
   echo -e " --dependencies\t\tIf depending on other modules, this is where to find them."
   echo -e " --vendor\t\tOnly for Drupal 7. If using the Composer Manager module, this is the location of the vendor directory. It will be mounted as sites/all/vendor."
-  echo -e " --composer-install\tOnly for Drupal 8. Runs 'composer drupal-rebuild && composer install' before running the tests."
+  echo -e " --composer-install\tDEPRECATED! Only for Drupal 8. Runs 'composer drupal-rebuild && composer install' before running the tests."
   echo -e " --libraries\t\tMount a libraries directory. It will be mounted as sites/all/libraries for Drupal 7, and libraries for Drupal 8."
   echo -e " --all\t\t\tRun all tests (passes --all to scripts/run-tests.sh)."
   echo -e " --class\t\tThe test class to run (passes --class to scripts/run-tests.sh)."
@@ -94,6 +94,7 @@ while true; do
       ;;
     --composer-install)
       RUN_COMPOSER_INSTALL=1
+      echo "WARNING! Installing dependencies via Composer is deprecated in Drupal 8 since 8.1. Please use another method for installing dependencies."
       shift
       ;;
     -n|--concurrency)
