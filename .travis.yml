@@ -4,4 +4,4 @@ services:
   - docker
 script:
   - ./drupal-run-tests.sh -v -c 7 --class ModuleD7WebTestCase --module `pwd`/tests/module_d7 --dependencies `pwd`/tests/dep_d7 --libraries `pwd`/tests/mount_dir --vendor `pwd`/tests/mount_dir
-  - ./drupal-run-tests.sh -v -c 8 --class 'Drupal\\module_d8\\Tests\\ModuleD8Test' --module `pwd`/tests/module_d8 --dependencies `pwd`/tests/dep_d8 --libraries `pwd`/tests/mount_dir --composer-install
+  - ./drupal-run-tests.sh -v -c 8 --class 'Drupal\\module_d8\\Tests\\ModuleD8Test' --module `pwd`/tests/module_d8 --dependencies `pwd`/tests/dep_d8 --libraries `pwd`/tests/mount_dir
