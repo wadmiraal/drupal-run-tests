@@ -54,6 +54,8 @@ If depending on a specific library, or using the Libraries API module, point thi
 
 ### `--composer-install`
 
+**DEPRECATED**
+
 *Only for Drupal 8*. This will install the Composer `drupal-rebuild` extension, and call `composer drupal-rebuild && composer install` prior to running tests.
 
 *Note: this is not the recommended way of installing Composer dependencies in Drupal 8, but is still the easiest way in our particular context.*
