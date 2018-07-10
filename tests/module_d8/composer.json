@@ -1,6 +1,0 @@
-{
-  "name": "drupal/module_d8",
-  "require": {
-    "wadmiraal/wind": "dev-master"
-  }
-}
