@@ -169,7 +169,8 @@ else
   echo -e "\e[32mStarted test runner.\e[0m"
 
   # Give services (like MySQL) time to start.
-  sleep 3
+  sleep 10
+    $DOCKER exec $CONTAINER_NAME bash -c 'ps aux'
 
   # If in context of Drupal 8, we might need to update Composer dependencies.
   # See https://www.drupal.org/node/2405811 for more information.
