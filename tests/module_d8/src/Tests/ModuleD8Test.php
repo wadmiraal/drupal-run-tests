@@ -20,6 +20,5 @@ class ModuleD8Test extends WebTestBase {
     $this->assertTrue(module_d8_return_true(), "Module was correctly found and loaded.");
     $this->assertTrue(dep_d8_return_true(), "Dependency was correctly found and loaded.");
     $this->assertTrue(file_exists('libraries/mounted_file.txt'), "Libraries were correctly mounted.");
-    $this->assertTrue(class_exists('Wind\Client\Logger'), "Composer dependencies were correctly loaded.");
   }
 }
